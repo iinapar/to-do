@@ -1,0 +1,31 @@
+<div class="form">
+  <div *ngIf="todo">
+    <mat-card [@fadeInAnimation]>
+      <mat-card-title> Edit {{ todo.title }} -list </mat-card-title>
+      <div>
+        <mat-form-field appearance="outline">
+          <!-- Muokkaus-input otsikolle-->
+          <input matInput id="todo-title" [(ngModel)]="todo.title" placeholder="Write a title here" />
+        </mat-form-field>
+        <!-- Luodaan todon tasks-taulukon alkioista muokattava input-kenttä-->
+        <div *ngFor="let task of todo.tasks; let i = index">
+          <mat-form-field appearance="outline">
+            <input matInput id="task" [(ngModel)]="task.task" placeholder="Write a task here" />
+          </mat-form-field>
+          <button mat-icon-button (click)="removeTask(i)"><mat-icon>delete</mat-icon></button>
+        </div>
+      </div>
+      <div>
+        <mat-form-field appearance="outline">
+          <input matInput type="text" placeholder="Write a new task" id="task" name="task" [(ngModel)]="task" />
+        </mat-form-field>
+        <button mat-icon-button (click)="addTask(task)"><mat-icon>add</mat-icon></button>
+      </div>
+
+      <div class="center">
+        <button mat-raised-button color="primary" (click)="save()"><mat-icon>edit</mat-icon>Save</button>
+        <button mat-raised-button color="primary" (click)="goBack()"><mat-icon>cancel</mat-icon>Cancel</button>
+      </div>
+    </mat-card>
+  </div>
+</div>

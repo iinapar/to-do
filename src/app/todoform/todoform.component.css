@@ -1,0 +1,23 @@
+button {
+  margin: 5px;
+}
+
+p {
+  margin: 5px;
+}
+
+mat-card {
+  margin: 1rem;
+}
+
+mat-form-field {
+  margin-left: 4rem;
+}
+
+b {
+  margin-right: 10px;
+}
+
+.red {
+  color: red;
+}

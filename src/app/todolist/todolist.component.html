@@ -1,0 +1,22 @@
+<div class="grid">
+  <!-- Käydään todolistan jokainen alkio läpi. 
+  Otetaan alkioille käyttöön fadeIn-animaatio -->
+  <div [@fadeInAnimation] *ngFor="let todo of todolist; let i = index">
+    <div>
+      <mat-card>
+        <mat-card-title>{{ todo.title }}</mat-card-title>
+        <!-- Käydään todon tasks-taulukko läpi-->
+        <div *ngFor="let task of todo.tasks">
+          <!-- Jos taskin completed on true otetaan käyttöön done css-luokka. 
+               Klikkaamalla taskia saa vaihdettua ominaisuuden completed arvoa -->
+          <p [ngClass]="task.completed ? 'done' : ''" (click)="task.completed = !task.completed">{{ task.task }}</p>
+        </div>
+        <div class="center">
+          <!-- Edit-nappula käyttää detail-reittiä ja ohjaa taskin id perusteella oikealle sivulle -->
+          <button mat-icon-button routerLink="/detail/{{ todo.id }}"><mat-icon>edit</mat-icon></button>
+          <button mat-icon-button (click)="deleteTodo(todo)"><mat-icon>delete</mat-icon></button>
+        </div>
+      </mat-card>
+    </div>
+  </div>
+</div>

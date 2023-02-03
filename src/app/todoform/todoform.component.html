@@ -1,0 +1,43 @@
+<div class="form">
+  <mat-card [@fadeInAnimation]>
+    <form [formGroup]="todoformModel">
+      <mat-card-title> Create a new list </mat-card-title>
+      <div>
+        <!-- käytetään bounceIn-animaatioita error-viestiin -->
+        <mat-error [@bounceIn] *ngIf="todoformModel.get('title')!.errors?.['required'] && todoformModel.get('title')!.touched"
+          >You must enter a title</mat-error
+        >
+        <mat-form-field appearance="outline">
+          <mat-label>Title</mat-label>
+          <input matInput id="title" placeholder="Write a title here" name="title" formControlName="title" required />
+        </mat-form-field>
+        <div>
+          <mat-form-field appearance="outline">
+            <mat-label>Task</mat-label>
+            <input matInput type="text" placeholder="Write your task" name="task" [(ngModel)]="task" formControlName="task" oneTask />
+            <!-- Näytetään vihje-teksti inputin alareunassa ja jos task on invalid ja touched muutetaan vihje punaiseksi -->
+            <mat-hint *ngIf="todoformModel.get('task')!.invalid" align="start">
+              <div [ngClass]="{ red: todoformModel.get('task')!.touched }">
+                <strong>Add at least one task</strong>
+              </div></mat-hint
+            >
+          </mat-form-field>
+          <!-- Lisäysnappi yksittäisen taskin lisäämiseen taskit-taulukkoon -->
+          <button mat-icon-button (click)="addTask(task)"><mat-icon>add</mat-icon></button>
+        </div>
+        <!-- taskit-taulukon alkiot käydään läpi ja tulostetaan lomakkeen alle -->
+        <div *ngFor="let task of taskit; let i = index">
+          <p>
+            <b> {{ i + 1 }}</b> {{ task.task }} <button mat-icon-button (click)="remove(i)"><mat-icon>delete</mat-icon></button>
+          </p>
+        </div>
+        <div class="center">
+          <button mat-raised-button color="primary" [disabled]="todoformModel.invalid" (click)="onSubmit(todoformModel.value)">
+            <mat-icon>edit</mat-icon>Save
+          </button>
+          <button mat-raised-button color="primary" (click)="goBack()"><mat-icon>cancel</mat-icon>Cancel</button>
+        </div>
+      </div>
+    </form></mat-card
+  >
+</div>

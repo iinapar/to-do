@@ -1,0 +1,37 @@
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; 
+  background-image: url(/assets/pics/background.jpg)}
+
+  mat-sidenav-content {
+    background-image: url(/assets/pics/background.jpg)
+  }
+
+mat-card-title {
+  text-align: center;
+  padding: 1rem;
+}
+
+.form {
+  display: grid;
+  justify-content: center;
+}
+
+.center {
+  text-align: center;
+}
+
+p {
+  padding: 5px 0px 0px 10px;
+  border-bottom: 1px solid black;
+}
+
+.done {
+  color: rgb(143, 143, 143);
+  text-decoration: line-through;
+}
+
+mat-error {
+  text-align: center;
+  margin: 0px;
+  padding: 0px;
+}
